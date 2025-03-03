@@ -9,4 +9,4 @@ class Usuario:
         print(f"{self.nombre} está consultando libros.")
     
     def solicitar_prestamo(self):
-        pass
+        print(f"{self.nombre} está solicitando un préstamo de libro.")
