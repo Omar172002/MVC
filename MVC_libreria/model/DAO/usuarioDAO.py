@@ -15,33 +15,33 @@ class UsuarioDAO:
 
         try:
             if not isinstance(usuario, Usuario):
-                raise ValueError("❌ El objeto no es una instancia de Usuario")
+                raise ValueError("El objeto no es una instancia de Usuario")
             self.usuarios_ref.add(usuario.create_dictionary())  
-            print("✅ Usuario agregado con éxito")
+            print("Usuario agregado con éxito")
         except Exception as e:
-            print(f"❌ Error al agregar el usuario: {e}")
+            print(f"Error al agregar el usuario: {e}")
 
     def get_usuarios(self):
         if self.usuarios_ref is None:
-            print("❌ No se puede conectar a Firebase")
+            print("No se puede conectar a Firebase")
             return []
 
         try:
             return [doc.to_dict() for doc in self.usuarios_ref.stream()]
         except Exception as e:
-            print(f"❌ Error al obtener los usuarios: {e}")
+            print(f"Error al obtener los usuarios: {e}")
             return []
 
     def get_usuario_por_nombre(self, nombre):
         if self.usuarios_ref is None:
-            print("❌ No se puede conectar a Firebase")
+            print("No se puede conectar a Firebase")
             return None
 
         try:
             query = self.usuarios_ref.where("nombre", "==", nombre).limit(1).stream()
             for doc in query:
-                return doc.to_dict()  # Corregido: usar `to_dict()` en lugar de `create_dictionary()`
+                return doc.to_dict()  
             return None
         except Exception as e:
-            print(f"❌ Error al obtener el usuario por nombre: {e}")
+            print(f"Error al obtener el usuario por nombre: {e}")
             return None

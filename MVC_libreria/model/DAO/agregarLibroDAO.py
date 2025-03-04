@@ -13,20 +13,20 @@ class LibroDAO:
 
     def add_libro(self, libro):
         if self.libros_ref is None:
-            print("❌ No se puede conectar a Firebase")
+            print("No se puede conectar a Firebase")
             return
 
         try:
             if not isinstance(libro, Libro):
-                raise ValueError("❌ El objeto no es una instancia de Libro")
+                raise ValueError("El objeto no es una instancia de Libro")
             self.libros_ref.add(libro.create_dictionary())  
-            print("✅ Libro agregado con éxito")
+            print("Libro agregado con éxito")
         except Exception as e:
-            print(f"❌ Error al agregar el libro: {e}")
+            print(f"Error al agregar el libro: {e}")
 
     def get_libros(self):
         if self.libros_ref is None:
-            print("❌ No se puede conectar a Firebase")
+            print("No se puede conectar a Firebase")
             return []
 
         try:

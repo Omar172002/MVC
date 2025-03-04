@@ -1,17 +1,17 @@
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QMessageBox
-from view.agregarLibroView import Ui_MainWindow_AgregarLibro  # Cambiar por el archivo correcto de la vista
-from dbConnection.FirebaseConnection import FirebaseConnection  # Ajustar la conexión a Firebase
-from model.objects.libro import Libro  # Cambiar al objeto adecuado para el libro
-from model.DAO.agregarLibroDAO import LibroDAO  # Cambiar el DAO de acuerdo al libro
+from view.agregarLibroView import Ui_MainWindow_AgregarLibro 
+from dbConnection.FirebaseConnection import FirebaseConnection 
+from model.objects.libro import Libro  
+from model.DAO.agregarLibroDAO import LibroDAO 
 
 
-class AgregarLibroController(QtWidgets.QMainWindow):  # Cambiar a QMainWindow
+class AgregarLibroController(QtWidgets.QMainWindow):  
 
     def __init__(self):
         super().__init__()
-        self.ui = Ui_MainWindow_AgregarLibro()  # Usamos el archivo de la interfaz
-        self.ui.setupUi(self)  # Configuramos la interfaz
+        self.ui = Ui_MainWindow_AgregarLibro() 
+        self.ui.setupUi(self)  
         self.initializeGUI()
         
 
