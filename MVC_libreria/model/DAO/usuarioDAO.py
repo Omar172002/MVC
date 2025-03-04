@@ -1,47 +1,49 @@
-from model.objects.usuario import Usuario
 from dbConnection.FirebaseConnection import FirebaseConnection
+from model.objects.usuario import Usuario
 
 class UsuarioDAO:
     def __init__(self):
         self.firebase_connection = FirebaseConnection()
         if self.firebase_connection.db is not None:
-            self.usuarios_ref = self.firebase_connection.db.collection('usuarios')
+            self.usuarios_ref = self.firebase_connection.db.collection('usuarios')  # Para usuarios en general
         else:
             self.usuarios_ref = None
 
-    def add_usuario(self, usuario):
-        if self.usuarios_ref is None:
-            return
-
-        try:
-            if not isinstance(usuario, Usuario):
-                raise ValueError("El objeto no es una instancia de Usuario")
-            self.usuarios_ref.add(usuario.create_dictionary())  
-            print("Usuario agregado con éxito")
-        except Exception as e:
-            print(f"Error al agregar el usuario: {e}")
-
-    def get_usuarios(self):
-        if self.usuarios_ref is None:
-            print("No se puede conectar a Firebase")
-            return []
-
-        try:
-            return [doc.to_dict() for doc in self.usuarios_ref.stream()]
-        except Exception as e:
-            print(f"Error al obtener los usuarios: {e}")
-            return []
-
     def get_usuario_por_nombre(self, nombre):
         if self.usuarios_ref is None:
-            print("No se puede conectar a Firebase")
+            print("Error: No hay conexión con Firebase")
             return None
-
         try:
             query = self.usuarios_ref.where("nombre", "==", nombre).limit(1).stream()
             for doc in query:
-                return doc.to_dict()  
+                return doc.to_dict()  # Devuelve el primer resultado como diccionario
             return None
         except Exception as e:
-            print(f"Error al obtener el usuario por nombre: {e}")
+            print(f"Error al obtener el usuario: {e}")
+            return None
+
+    # Método para obtener el usuario por nombre y rol
+    def get_usuario_por_nombre_en_rol(self, nombre, rol):
+        if self.firebase_connection.db is None:
+            print("Error: No hay conexión con Firebase")
+            return None
+        
+        # Dependiendo del rol, buscaremos en la colección adecuada
+        if rol == "administradores":
+            usuarios_ref = self.firebase_connection.db.collection('administradores')
+        elif rol == "alumnos":
+            usuarios_ref = self.firebase_connection.db.collection('alumnos')
+        elif rol == "profesores":
+            usuarios_ref = self.firebase_connection.db.collection('profesores')  # Colección de profesores
+        else:
+            print(f"Rol desconocido: {rol}")
+            return None
+        
+        try:
+            query = usuarios_ref.where("nombre", "==", nombre).limit(1).stream()
+            for doc in query:
+                return doc.to_dict()  # Devuelve el primer resultado como diccionario
+            return None
+        except Exception as e:
+            print(f"Error al obtener el usuario: {e}")
             return None
