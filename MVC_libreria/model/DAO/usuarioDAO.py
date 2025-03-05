@@ -34,7 +34,7 @@ class UsuarioDAO:
         elif rol == "alumnos":
             usuarios_ref = self.firebase_connection.db.collection('alumnos')
         elif rol == "profesores":
-            usuarios_ref = self.firebase_connection.db.collection('profesores')  # Colección de profesores
+            usuarios_ref = self.firebase_connection.db.collection('profesores')  
         else:
             print(f"Rol desconocido: {rol}")
             return None

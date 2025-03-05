@@ -3,8 +3,8 @@ from model.objects.usuario import Usuario
 
 class Alumno(Usuario):
     def __init__(self, nombre, rol, matricula):
-        super().__init__(nombre, rol)  # Llama al constructor de la clase padre
-        self.__matricula = matricula  # Nuevo atributo exclusivo de Alumno
+        super().__init__(nombre, rol)  
+        self.__matricula = matricula  
 
     # Getter para matrícula
     def get_matricula(self):
@@ -16,6 +16,6 @@ class Alumno(Usuario):
 
     # Representación en diccionario para Firebase
     def create_dictionary(self):
-        data = super().create_dictionary()  # Obtiene los datos de Usuario
-        data["matricula"] = self.__matricula  # Agrega la matrícula
+        data = super().create_dictionary()  
+        data["matricula"] = self.__matricula  
         return data

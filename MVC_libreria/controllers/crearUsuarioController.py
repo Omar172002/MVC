@@ -3,11 +3,11 @@ from view.crearUsuarioView import Ui_MainWindow_agregarUsuarios
 from model.objects.usuario import Usuario
 from model.objects.alumno import Alumno
 from model.objects.administador import Administrador  # Importa la clase Administrador
-from model.objects.profesor import Profesor  # Importa la clase Profesor
+from model.objects.profesor import Profesor  
 from model.DAO.usuarioDAO import UsuarioDAO
 from model.DAO.alumnoDAO import AlumnoDAO
-from model.DAO.adminstradorDAO import AdministradorDAO  # Importa el DAO de Administrador
-from model.DAO.profesorDAO import ProfesorDAO  # Importa el DAO de Profesor
+from model.DAO.adminstradorDAO import AdministradorDAO  
+from model.DAO.profesorDAO import ProfesorDAO  
 
 class AgregarUsuarioController(QtWidgets.QMainWindow):
     def __init__(self):

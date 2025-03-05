@@ -1,9 +1,12 @@
 from PyQt6 import QtWidgets
 from view.loginView import Ui_MainWindow as LoginView
+from view.solicitarLibroView import Ui_MainWindow as SolicitarLibroView
+from view.solicitarLibroView import Ui_MainWindow as SolicitarLibroView
 from controllers.agregarLibroController import AgregarLibroController
 from dbConnection.FirebaseConnection import FirebaseConnection  # Conexión a Firebase
 from model.DAO.usuarioDAO import UsuarioDAO  # Importa el DAO de Usuario
 from model.DAO.profesorDAO import ProfesorDAO  # Importa el DAO de Profesor
+
 
 class LoginController(QtWidgets.QMainWindow):
     def __init__(self):
@@ -12,7 +15,7 @@ class LoginController(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.ui.BT_login.clicked.connect(self.check_login)
         self.usuario_dao = UsuarioDAO()  # Instancia de usuarioDAO para acceder a Firebase
-        self.profesor_dao = ProfesorDAO()  # Instancia del DAO de Profesor
+        self.profesor_dao = ProfesorDAO() 
 
     def check_login(self):
         username = self.ui.login_input.toPlainText().strip().lower()
@@ -52,7 +55,6 @@ class LoginController(QtWidgets.QMainWindow):
         self.close()
 
     def open_alumno_view(self):
-  
         QtWidgets.QMessageBox.information(self, "Bienvenido", "Acceso como alumno")
     
 

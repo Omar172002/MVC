@@ -32,5 +32,39 @@ class LibroDAO:
         try:
             return [doc.create_dictionary() for doc in self.libros_ref.stream()]
         except Exception as e:
-            print(f"❌ Error al obtener los libros: {e}")
+            print(f"Error al obtener los libros: {e}")
+            return []
+        
+    def solicitar_libro(self, libro: Libro):
+        """Método para solicitar un libro. Este podría agregar el libro como 'Solicitado' en la base de datos"""
+        if self.libros_ref is None:
+            print("Error: No hay conexión con Firebase")
+            return None
+        try:
+            # Crear un diccionario del libro con estado 'Solicitado'
+            libro_dict = libro.create_dictionary()
+            libro_dict["estado"] = "Solicitado"  # Cambiar el estado del libro a 'Solicitado'
+            
+            # Agregar el libro a la base de datos de Firebase
+            self.libros_ref.add(libro_dict)
+            print(f"Libro solicitado con éxito: {libro_dict}")
+        except Exception as e:
+            print(f"Error al solicitar el libro: {e}")
+
+    def obtener_libros_disponibles(self):
+        """Método para obtener todos los libros que están disponibles"""
+        if self.libros_ref is None:
+            print("Error: No hay conexión con Firebase")
+            return []
+        try:
+            # Filtrar los libros por estado "Disponible"
+            query = self.libros_ref.where("estado", "==", "Disponible").stream()
+            libros = []
+            for doc in query:
+                libro_data = doc.to_dict()
+                libro = Libro(libro_data["titulo"], libro_data["autor"], libro_data["genero"], libro_data["estado"])
+                libros.append(libro)
+            return libros
+        except Exception as e:
+            print(f"Error al obtener los libros disponibles: {e}")
             return []

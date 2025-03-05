@@ -4,8 +4,9 @@ from controllers.agregarLibroController import AgregarLibroController  # Importa
 
 
 # pyuic6 -o  loginView.py loginView.ui        
-#pyuic6 -o  agregarLibroView.py agregarLibroView.ui    
-#pyuic6 -o  crearUsuarioView.py crearUsuarioView.ui    
+# pyuic6 -o  agregarLibroView.py agregarLibroView.ui    
+# pyuic6 -o  crearUsuarioView.py crearUsuarioView.ui   
+# pyuic6 -o  solicitarLibroView.py solicitarLibroView.ui   
 
 
 if __name__ == "__main__":
