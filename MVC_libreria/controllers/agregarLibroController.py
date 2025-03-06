@@ -28,8 +28,6 @@ class AgregarLibroController(QtWidgets.QMainWindow):
     def regresar(self):
         # Cierra la ventana de agregar libro
         self.close()
-
-        # Importar LoginController dentro de la función para evitar la importación circular
         from controllers.loginController import LoginController
         # Muestra la ventana de login
         self.login_window = LoginController()

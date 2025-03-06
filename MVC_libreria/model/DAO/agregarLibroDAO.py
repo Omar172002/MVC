@@ -68,3 +68,19 @@ class LibroDAO:
         except Exception as e:
             print(f"Error al obtener los libros disponibles: {e}")
             return []
+
+    def actualizar_estado_libro(self, libro: Libro):
+        if self.libros_ref is None:
+            print("Error: No hay conexión con Firebase")
+            return
+
+        try:
+            # Buscar el libro en la base de datos por su título
+            query = self.libros_ref.where("titulo", "==", libro.get_titulo()).limit(1).stream()
+            for doc in query:
+                doc_ref = self.libros_ref.document(doc.id)
+                # Actualizar el estado del libro
+                doc_ref.update({"estado": "Solicitado"})
+                print(f"Estado del libro '{libro.get_titulo()}' actualizado a 'Solicitado'.")
+        except Exception as e:
+            print(f"Error al actualizar el estado del libro: {e}")

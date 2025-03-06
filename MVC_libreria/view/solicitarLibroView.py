@@ -1,51 +1,56 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-class Ui_MainWindow(object):
+class Ui_MainWindow_SolicitarLibro(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
-        self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
+        MainWindow.resize(500, 350)
+        MainWindow.setStyleSheet("background-color: #000; color: white;")  # Fondo negro y texto blanco
+
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.frame = QtWidgets.QFrame(parent=self.centralwidget)
-        self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame.setObjectName("frame")
+
+        self.layout = QtWidgets.QVBoxLayout(self.centralwidget)
+
+        # Título
+        self.label_titulo = QtWidgets.QLabel("Solicitar un Libro", self.centralwidget)
+        self.label_titulo.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label_titulo.setStyleSheet("font-size: 18px; font-weight: bold; color: white;")  # Texto blanco
+
+        # Formulario
+        self.form_layout = QtWidgets.QFormLayout()
         
+        self.label_usuario = QtWidgets.QLabel("Usuario:", self.centralwidget)
+        self.input_usuario = QtWidgets.QLineEdit(self.centralwidget)
+        self.input_usuario.setStyleSheet("padding: 5px; border-radius: 5px; border: 1px solid white; color: white; background-color: #333;")
+
+        self.label_libro = QtWidgets.QLabel("Título del Libro:", self.centralwidget)
+        self.input_libro = QtWidgets.QLineEdit(self.centralwidget)
+        self.input_libro.setStyleSheet("padding: 5px; border-radius: 5px; border: 1px solid white; color: white; background-color: #333;")
+
+        self.form_layout.addRow(self.label_usuario, self.input_usuario)
+        self.form_layout.addRow(self.label_libro, self.input_libro)
+
         # Botones
-        self.BT_solicitarLibros = QtWidgets.QPushButton(parent=self.frame)
-        self.BT_solicitarLibros.setGeometry(QtCore.QRect(310, 210, 100, 32))
-        self.BT_solicitarLibros.setObjectName("BT_solicitarLibros")
+        self.button_layout = QtWidgets.QHBoxLayout()
         
-        self.BT_regrear = QtWidgets.QPushButton(parent=self.frame)
-        self.BT_regrear.setGeometry(QtCore.QRect(100, 380, 100, 32))
-        self.BT_regrear.setObjectName("BT_regrear")
-        
-        # Campos de entrada
-        self.input_titulo = QtWidgets.QLineEdit(self.frame)
-        self.input_titulo.setGeometry(QtCore.QRect(150, 150, 200, 32))
-        self.input_titulo.setObjectName("input_titulo")
-        
-        self.input_usuario = QtWidgets.QLineEdit(self.frame)  # Cambiar de input_autor a input_usuario
-        self.input_usuario.setGeometry(QtCore.QRect(150, 200, 200, 32))  # Posición ajustada
-        self.input_usuario.setObjectName("input_usuario")
+        self.BT_solicitarLibro = QtWidgets.QPushButton("Solicitar Libro", self.centralwidget)
+        self.BT_solicitarLibro.setStyleSheet("background-color: #4CAF50; color: white; font-weight: bold; padding: 8px; border-radius: 5px;")
 
-        self.verticalLayout.addWidget(self.frame)
+        self.BT_regresar = QtWidgets.QPushButton("Regresar", self.centralwidget)
+        self.BT_regresar.setStyleSheet("background-color: #D32F2F; color: white; font-weight: bold; padding: 8px; border-radius: 5px;")
+
+        self.button_layout.addWidget(self.BT_solicitarLibro)
+        self.button_layout.addWidget(self.BT_regresar)
+
+        # Agregar widgets al layout principal
+        self.layout.addWidget(self.label_titulo)
+        self.layout.addLayout(self.form_layout)
+        self.layout.addLayout(self.button_layout)
+
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 24))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Solicitar Libro"))
-        self.BT_solicitarLibros.setText(_translate("MainWindow", "Solicitar libro"))
-        self.BT_regrear.setText(_translate("MainWindow", "Regresar"))

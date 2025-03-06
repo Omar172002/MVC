@@ -13,10 +13,10 @@ class Prestamo:
         # Crear un diccionario del préstamo con solo texto
         return {
             "usuario": {
-                "nombre": self.usuario_nombre  # Solo el nombre del usuario
+                "nombre": self.usuario_nombre  
             },
             "libro": {
-                "titulo": self.libro_titulo  # Solo el título del libro
+                "titulo": self.libro_titulo  #
             },
             "fecha_prestamo": self.fecha_prestamo,
             "fecha_devolucion": self.fecha_devolucion
