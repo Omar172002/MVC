@@ -1,23 +1,41 @@
-# model/objects/prestamo.py
 class Prestamo:
-    def __init__(self, usuario_nombre, libro_titulo, fecha_prestamo, fecha_devolucion=None):
-        self.usuario_nombre = usuario_nombre  # Solo el nombre del usuario
-        self.libro_titulo = libro_titulo  # Solo el título del libro
-        self.fecha_prestamo = fecha_prestamo
-        self.fecha_devolucion = fecha_devolucion  # Puede ser None si aún no se devuelve
+    def __init__(self, usuario, libro, fecha_inicial, fecha_final):
+        self.__usuario = usuario
+        self.__libro = libro
+        self.__fecha_inicial = fecha_inicial
+        self.__fecha_final = fecha_final
 
-    def devolver_libro(self, fecha_devolucion):
-        self.fecha_devolucion = fecha_devolucion
+    # Getters
+    def get_usuario(self):
+        return self.__usuario
 
+    def get_libro(self):
+        return self.__libro
+
+    def get_fecha_inicial(self):
+        return self.__fecha_inicial
+
+    def get_fecha_final(self):
+        return self.__fecha_final
+
+    # Setters
+    def set_usuario(self, usuario):
+        self.__usuario = usuario
+
+    def set_libro(self, libro):
+        self.__libro = libro
+
+    def set_fecha_inicial(self, fecha_inicial):
+        self.__fecha_inicial = fecha_inicial
+
+    def set_fecha_final(self, fecha_final):
+        self.__fecha_final = fecha_final
+
+    # Representación en diccionario para Firebase
     def create_dictionary(self):
-        # Crear un diccionario del préstamo con solo texto
         return {
-            "usuario": {
-                "nombre": self.usuario_nombre  
-            },
-            "libro": {
-                "titulo": self.libro_titulo  #
-            },
-            "fecha_prestamo": self.fecha_prestamo,
-            "fecha_devolucion": self.fecha_devolucion
+            "usuario": self.__usuario,
+            "libro": self.__libro,
+            "fecha_inicial": self.__fecha_inicial,
+            "fecha_final": self.__fecha_final
         }

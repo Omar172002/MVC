@@ -48,8 +48,10 @@ class LoginController(QtWidgets.QMainWindow):
     def open_agregar_libro_view(self):
         self.agregar_libro_window = AgregarLibroController()
         self.agregar_libro_window.show()
+       
         self.close()
 
     def open_solicitar_libro_view(self, username, rol):
         self.solicitar_libro_window = SolicitarLibroController(username, rol)  # Pasar username y rol
         self.solicitar_libro_window.show()
+        self.close()
