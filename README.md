@@ -27,4 +27,19 @@ python main.py
 python3 main.py
 ```
 
-Asegúrate de que el archivo `main.py` esté configurado correctamente como punto de entrada para la ejecución del programa.
+# Proyecto de Administración de Campos
+
+## Usuarios y Roles
+
+- **Administrador**
+  - Nombre: Alan
+  - Rol: Administrador
+
+- **Estudiante**
+  - Nombre: Omar
+  - Rol: Estudiante
+
+- **Profesor**
+  - Nombre: Juan
+  - Rol: Profesor
+
