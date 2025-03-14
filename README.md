@@ -1,6 +1,8 @@
+# MVC
+
 # Proyecto de Python
 
-Este proyecto de Python se ejecuta utilizando el archivo `main.py`. 
+Este proyecto de Python se ejecuta utilizando el archivo `main.py`.
 
 ## Requisitos
 
@@ -9,30 +11,20 @@ Este proyecto de Python se ejecuta utilizando el archivo `main.py`.
 
    ```bash
    pip install -r requirements.txt
+   ```
+
+## Ejecución del Proyecto
+
 Para ejecutar el proyecto, simplemente corre el siguiente comando:
 
-bash
-Copiar
-Editar
+```bash
 python main.py
-Entorno Virtual
-Si deseas utilizar un entorno virtual, sigue estos pasos:
+```
 
-Crea un entorno virtual con el comando:
+### En caso de usar un entorno virtual, usa el siguiente comando:
 
-python -m venv venv
-Actívalo con:
+```bash
+python3 main.py
+```
 
-En Windows:
-
-Editar
-.\venv\Scripts\activate
-En Mac/Linux:
-
-source venv/bin/activate
-Luego, instala las dependencias dentro del entorno virtual:
-
-pip install -r requirements.txt
-Finalmente, ejecuta el proyecto:
-
-python main.py
+Asegúrate de que el archivo `main.py` esté configurado correctamente como punto de entrada para la ejecución del programa.
